@@ -27,21 +27,20 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
         version.text = BuildConfig.VERSION_NAME
 
         superyao.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             if (!openURL(requireContext(), About.FACEBOOK_PAGE)) {
                 openURL(requireContext(), About.FACEBOOK_PAGE2)
             }
         }
 
         googlePlay.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.GOOGLE_PLAY_PAGE)
         }
 
         contact.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            val intent = contactIntent()
-            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                startActivity(intent)
-            }
+            startActivity(contactIntent())
         }
 
         /*
@@ -49,14 +48,17 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         terms.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.TERMS_AND_CONDITIONS)
         }
 
         privacyPolicy.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.PRIVACY_POLICY)
         }
 
         disclaimer.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.DISCLAIMER)
         }
 
@@ -65,6 +67,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         zxingAndroidEmbedded.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.ZXING_ANDROID_EMBEDDED)
         }
 
@@ -73,6 +76,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         flaticon.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.FREEPIK)
         }
 
