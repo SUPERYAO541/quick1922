@@ -20,14 +20,16 @@ class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ) = FragmentSettingsBinding.inflate(inflater, container, false).apply {
 
-        vibrateOnScanned.isChecked = viewModel.sharedPreferences().vibrateOnScanned
+        val sharedPreferences = viewModel.sharedPreferences()
+
+        vibrateOnScanned.isChecked = sharedPreferences.vibrateOnScanned
         vibrateOnScanned.setOnCheckedChangeListener { _, checked ->
-            viewModel.sharedPreferences().vibrateOnScanned = checked
+            sharedPreferences.vibrateOnScanned = checked
         }
 
-        autoFinishActivity.isChecked = viewModel.sharedPreferences().autoFinishActivity
+        autoFinishActivity.isChecked = sharedPreferences.autoFinishActivity
         autoFinishActivity.setOnCheckedChangeListener { _, checked ->
-            viewModel.sharedPreferences().autoFinishActivity = checked
+            sharedPreferences.autoFinishActivity = checked
         }
     }.root
 

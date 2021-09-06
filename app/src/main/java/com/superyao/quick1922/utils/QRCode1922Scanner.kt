@@ -20,7 +20,7 @@ class QRCode1922Scanner(
     private var callback: Callback,
 ) {
     interface Callback {
-        fun onScanned(smsBody: String)
+        fun onScanned(sms1922Intent: Intent)
     }
 
     var torchON = false
@@ -41,7 +41,7 @@ class QRCode1922Scanner(
                 Timber.d(result.text)
                 if (result.text?.startsWith(SMS_TO_1922) == true) { // 1922 detected
                     val smsBody = result.text.removePrefix("$SMS_TO_1922:")
-                    callback.onScanned(smsBody)
+                    callback.onScanned(sms1922Intent(smsBody))
                 }
             }
 

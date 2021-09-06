@@ -1,6 +1,7 @@
 package com.superyao.quick1922.ui.main
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -82,11 +83,11 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     }
 
     // =============================================================================================
-    // Main
+    // Callback
     // =============================================================================================
 
-    override fun onScanned(smsBody: String) {
-        startActivity(QRCode1922Scanner.sms1922Intent(smsBody))
+    override fun onScanned(sms1922Intent: Intent) {
+        startActivity(sms1922Intent)
         if (viewModel.sharedPreferences().vibrateOnScanned) {
             effectHeavyClickVibrate()
         }
