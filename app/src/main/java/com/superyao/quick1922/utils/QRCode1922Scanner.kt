@@ -20,7 +20,8 @@ class QRCode1922Scanner(
     private var callback: Callback,
 ) {
     interface Callback {
-        fun onScanned(sms1922Intent: Intent)
+        fun onScanSuccess(sms1922Intent: Intent)
+        fun onScanNot1922()
     }
 
     var torchON = false
@@ -39,10 +40,15 @@ class QRCode1922Scanner(
 
             decodeContinuous { result ->
                 Timber.d(result.text)
-                if (result.text?.startsWith(SMS_TO_1922) == true) { // 1922 detected
-                    pauseAndWait() // pause the scanner
+                if (result.text == null || result.text.isEmpty()) {
+                    return@decodeContinuous
+                }
+                pause() // prevent duplicate scans
+                if (result.text.startsWith(SMS_TO_1922)) {
                     val smsBody = result.text.removePrefix("$SMS_TO_1922:")
-                    callback.onScanned(sms1922Intent(smsBody))
+                    callback.onScanSuccess(sms1922Intent(smsBody))
+                } else {
+                    callback.onScanNot1922()
                 }
             }
 
