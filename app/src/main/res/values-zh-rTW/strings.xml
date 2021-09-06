@@ -11,6 +11,8 @@
 
     <string name="feedback">意見回饋</string>
 
+    <string name="highest_brightness">最高亮度</string>
+
     <string name="hint_message">請將實聯制 QR Code 對準下方掃描框。</string>
     <string name="hint_title">簡訊實聯制 1922</string>
 

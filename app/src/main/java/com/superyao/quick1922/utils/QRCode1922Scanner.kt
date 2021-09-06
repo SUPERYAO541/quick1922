@@ -40,6 +40,7 @@ class QRCode1922Scanner(
             decodeContinuous { result ->
                 Timber.d(result.text)
                 if (result.text?.startsWith(SMS_TO_1922) == true) { // 1922 detected
+                    pauseAndWait() // pause the scanner
                     val smsBody = result.text.removePrefix("$SMS_TO_1922:")
                     callback.onScanned(sms1922Intent(smsBody))
                 }

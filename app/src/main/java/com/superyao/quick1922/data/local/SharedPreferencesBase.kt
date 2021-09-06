@@ -9,29 +9,31 @@ class SharedPreferencesBase(context: Context) {
 
     private val setting = context.getSharedPreferences(NAME, MODE_PRIVATE)
 
-    var vibrateOnScanned: Boolean
-        get() = setting.getValue(VIBRATE_ON_SCANNED, true)
+    var vibrateWhenScanned: Boolean
+        get() = setting.getValue(VIBRATE_WHEN_SCANNED, true)
         set(value) {
-            setting.commitValue(VIBRATE_ON_SCANNED, value)
+            setting.commitValue(VIBRATE_WHEN_SCANNED, value)
         }
 
-    var autoFinishActivity: Boolean
-        get() = setting.getValue(AUTO_FINISH_ACTIVITY, true)
+    var exitWhenScanned: Boolean
+        get() = setting.getValue(EXIT_WHEN_SCANNED, true)
         set(value) {
-            setting.commitValue(AUTO_FINISH_ACTIVITY, value)
+            setting.commitValue(EXIT_WHEN_SCANNED, value)
         }
 
-    fun removeValue(key: String) = setting.edit().remove(key).commit()
-
-    fun clearSettings() = setting.edit().clear().commit()
+    var highestBrightness: Boolean
+        get() = setting.getValue(HIGHEST_BRIGHTNESS, false)
+        set(value) {
+            setting.commitValue(HIGHEST_BRIGHTNESS, value)
+        }
 
     companion object {
         private const val NAME = "settings"
 
-        // 掃描成功後是否震動
-        const val VIBRATE_ON_SCANNED = "VIBRATE_ON_SCANNED"
+        const val VIBRATE_WHEN_SCANNED = "VIBRATE_WHEN_SCANNED"
 
-        // 是否自動關閉 Activity
-        const val AUTO_FINISH_ACTIVITY = "AUTO_FINISH_ACTIVITY"
+        const val EXIT_WHEN_SCANNED = "EXIT_WHEN_SCANNED"
+
+        const val HIGHEST_BRIGHTNESS = "HIGHEST_BRIGHTNESS"
     }
 }

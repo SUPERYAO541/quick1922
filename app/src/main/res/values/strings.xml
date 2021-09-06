@@ -11,6 +11,8 @@
 
     <string name="feedback">Feedback</string>
 
+    <string name="highest_brightness">Highest brightness</string>
+
     <string name="hint_message">Just point the scan box at the QR Code.</string>
     <string name="hint_title">Real-Name Registration 1922</string>
 

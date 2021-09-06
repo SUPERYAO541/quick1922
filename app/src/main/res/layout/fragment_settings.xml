@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/vibrate_on_scanned"
+                    android:id="@+id/vibrate_when_scanned"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="16dp"
@@ -52,7 +52,7 @@
                     app:drawableTint="@android:color/black" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/auto_finish_activity"
+                    android:id="@+id/exit_when_scanned"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -60,6 +60,17 @@
                     android:textSize="@dimen/font_l"
                     android:drawablePadding="16dp"
                     app:drawableStartCompat="@drawable/ic_round_close_24"
+                    app:drawableTint="@android:color/black" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/highest_brightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="@string/highest_brightness"
+                    android:textSize="@dimen/font_l"
+                    android:drawablePadding="16dp"
+                    app:drawableStartCompat="@drawable/ic_round_brightness_high_24"
                     app:drawableTint="@android:color/black" />
 
             </LinearLayout>

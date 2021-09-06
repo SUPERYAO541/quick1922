@@ -8,4 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     repository: DataRepository
-) : BaseViewModel(repository)
+) : BaseViewModel(repository) {
+    var screenBrightness = .3f
+}
