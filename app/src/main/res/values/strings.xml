@@ -2,17 +2,18 @@
 <resources>
     <string name="about">About</string>
 
-    <string name="app_introduce">Hello, I am developer SUPERYAO. This app could help you to complete the 1922 real-name registration more quickly, it\'s completely FREE and NO ADS. The app does NOT have internet permission, so it will NOT upload any personal information. If there is any question, please let me know. &#128512;</string>
+    <string name="app_introduce">Hello, I am developer SUPERYAO. This app could help you to complete the 1922 real-name registration more quickly, it\'s completely FREE and NO ADS. The app does NOT have internet permission, so it will NOT upload any sensitive information. If there is any question, please let me know. &#128512;</string>
     <string name="app_name">Quick1922</string>
-
-    <string name="auto_finish_activity">Exit the app when scan completed</string>
 
     <string name="disclaimer">Disclaimer</string>
 
+    <string name="error_not_1922_qr">It\'s not the 1922 real-name registration QR Code.</string>
+    <string name="error_start_sms_app">Something went wrong when starting the sms app.</string>
+
     <string name="feedback">Feedback</string>
 
-    <string name="hint_message">Just point the scan box at the QR Code.</string>
-    <string name="hint_title">Real-Name Registration 1922</string>
+    <string name="home_message">Just point the scan box at the QR Code.</string>
+    <string name="home_title">Real-Name Registration 1922</string>
 
     <string name="icons">Icons</string>
 
@@ -23,15 +24,14 @@
     <string name="privacy_policy">Privacy Policy</string>
 
     <string name="settings">Settings</string>
+    <string name="settings_exit_when_scanned">Exit the app when scan completed</string>
+    <string name="settings_highest_brightness">Highest brightness</string>
+    <string name="settings_vibrate_when_scanned">Vibrate when scan completed</string>
 
     <string name="sms_1922">SMS 1922</string>
-
-    <string name="something_went_wrong">Something went wrong.</string>
 
     <string name="terms">Terms</string>
     <string name="terms_and_conditions">
         <![CDATA[Terms & Conditions]]>
     </string>
-
-    <string name="vibrate_on_scanned">Vibrate when scan completed</string>
 </resources>

@@ -3,16 +3,17 @@ package com.superyao.quick1922.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.quick1922.databinding.FragmentSettingsBinding
-import com.superyao.quick1922.ui.base.BaseViewModel
+import com.superyao.quick1922.ui.main.MainViewModel
+import com.superyao.quick1922.utils.brightness
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
-    private val viewModel by viewModels<BaseViewModel>()
+    private val viewModel by activityViewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,14 +21,22 @@ class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ) = FragmentSettingsBinding.inflate(inflater, container, false).apply {
 
-        vibrateOnScanned.isChecked = viewModel.sharedPreferences().vibrateOnScanned
-        vibrateOnScanned.setOnCheckedChangeListener { _, checked ->
-            viewModel.sharedPreferences().vibrateOnScanned = checked
+        val sharedPreferences = viewModel.sharedPreferences()
+
+        vibrateWhenScanned.isChecked = sharedPreferences.vibrateWhenScanned
+        vibrateWhenScanned.setOnCheckedChangeListener { _, checked ->
+            sharedPreferences.vibrateWhenScanned = checked
         }
 
-        autoFinishActivity.isChecked = viewModel.sharedPreferences().autoFinishActivity
-        autoFinishActivity.setOnCheckedChangeListener { _, checked ->
-            viewModel.sharedPreferences().autoFinishActivity = checked
+        exitWhenScanned.isChecked = sharedPreferences.exitWhenScanned
+        exitWhenScanned.setOnCheckedChangeListener { _, checked ->
+            sharedPreferences.exitWhenScanned = checked
+        }
+
+        highestBrightness.isChecked = sharedPreferences.highestBrightness
+        highestBrightness.setOnCheckedChangeListener { _, checked ->
+            sharedPreferences.highestBrightness = checked
+            activity?.brightness(if (checked) 1f else viewModel.screenBrightness)
         }
     }.root
 

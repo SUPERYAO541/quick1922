@@ -6,11 +6,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.net.toUri
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.dev.toolkit.ui.clickTooFast
+import com.superyao.dev.toolkit.ui.messageDialog
 import com.superyao.dev.toolkit.urlIntent
+import com.superyao.quick1922.About
 import com.superyao.quick1922.BuildConfig
 import com.superyao.quick1922.R
 import com.superyao.quick1922.databinding.FragmentAboutBinding
@@ -27,16 +28,15 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
         version.text = BuildConfig.VERSION_NAME
 
         superyao.setOnClickListener {
-            if (!openURL(requireContext(), "fb://page/517927788372255")) {
-                openURL(requireContext(), "https://www.facebook.com/SUPERYAO541")
+            if (clickTooFast()) return@setOnClickListener
+            if (!openURL(requireContext(), About.FACEBOOK_PAGE_DIRECTLY)) {
+                openURL(requireContext(), About.FACEBOOK_PAGE)
             }
         }
 
         googlePlay.setOnClickListener {
-            openURL(
-                requireContext(),
-                "https://play.google.com/store/apps/dev?id=5829727399068828820"
-            )
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.GOOGLE_PLAY_PAGE)
         }
 
         contact.setOnClickListener {
@@ -45,7 +45,12 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 startActivity(contactIntent())
             } catch (e: Exception) {
                 Timber.e(e)
-                Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT).show()
+                activity?.run {
+                    messageDialog(
+                        About.SUPERYAO,
+                        "Facebook:\n${About.FACEBOOK_PAGE}\n\nEmail:\n${About.EMAIL}"
+                    )
+                }
             }
         }
 
@@ -54,26 +59,27 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         terms.setOnClickListener {
-            openURL(requireContext(), "https://quick1922.flycricket.io/terms.html")
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.TERMS_AND_CONDITIONS)
         }
 
         privacyPolicy.setOnClickListener {
-            openURL(requireContext(), "https://quick1922.flycricket.io/privacy.html")
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.PRIVACY_POLICY)
         }
 
         disclaimer.setOnClickListener {
-            openURL(
-                requireContext(),
-                "https://www.termsfeed.com/live/b933cef4-b2b6-4993-ac66-59288716ea94"
-            )
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.DISCLAIMER)
         }
 
         /*
         libs
          */
 
-        compressor.setOnClickListener {
-            openURL(requireContext(), "https://github.com/zetbaitsu/Compressor")
+        zxingAndroidEmbedded.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.ZXING_ANDROID_EMBEDDED)
         }
 
         /*
@@ -81,7 +87,8 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         flaticon.setOnClickListener {
-            openURL(requireContext(), "https://www.flaticon.com/authors/freepik")
+            if (clickTooFast()) return@setOnClickListener
+            openURL(requireContext(), About.FREEPIK)
         }
 
     }.root
@@ -91,7 +98,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
             "- Info -\n" +
                     "AppId: ${BuildConfig.APPLICATION_ID}\n" +
                     "Ver: ${BuildConfig.VERSION_NAME}\n" +
-                    "Code: ${BuildConfig.VERSION_CODE}\n" +
+                    "VerCode: ${BuildConfig.VERSION_CODE}\n" +
                     "SDK: ${Build.VERSION.SDK_INT}\n" +
                     "Manufacturer: ${Build.MANUFACTURER}\n" +
                     "Brand: ${Build.BRAND}\n" +
@@ -105,15 +112,10 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
         Timber.d(deviceInfo)
         val contactIntent = Intent(Intent.ACTION_SEND).apply {
-            // selector
-            // use Intent.ACTION_SENDTO to select the Activity
             selector = Intent(Intent.ACTION_SENDTO).apply { data = "mailto:".toUri() }
-            // putExtra
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("supersy943@gmail.com"))
-            putExtra(
-                Intent.EXTRA_SUBJECT,
-                "[${getString(R.string.app_name)}] ${getString(R.string.feedback)}"
-            )
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(About.EMAIL))
+            val subject = "[${getString(R.string.app_name)}] ${getString(R.string.feedback)}"
+            putExtra(Intent.EXTRA_SUBJECT, subject)
             putExtra(Intent.EXTRA_TEXT, "$deviceInfo$additional\n\n")
         }
         return Intent.createChooser(contactIntent, getString(R.string.feedback))

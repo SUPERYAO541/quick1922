@@ -1,6 +1,7 @@
 package com.superyao.quick1922.ui.main
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,10 @@ import com.superyao.quick1922.databinding.ActivityMainBinding
 import com.superyao.quick1922.ui.AboutBottomSheetDialogFragment
 import com.superyao.quick1922.ui.SettingsBottomSheetDialogFragment
 import com.superyao.quick1922.utils.QRCode1922Scanner
+import com.superyao.quick1922.utils.alertDialog
+import com.superyao.quick1922.utils.brightness
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
         PermissionsRequest(this, Manifest.permission.CAMERA).apply {
             rationale = getString(R.string.permission_reason)
             dontAskAgainHelpMessage = rationale
+            onGranted = { scanner.resume() }
             onDenied = { onBackPressed() }
             onGoToAppDetailsSettings = { onBackPressed() }
         }.request(this)
@@ -45,11 +50,13 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     override fun onStart() {
         super.onStart()
         scanner.resume()
+        highestBrightness(true)
     }
 
     override fun onStop() {
         super.onStop()
         scanner.pause()
+        highestBrightness(false)
     }
 
     override fun onBackPressed() {
@@ -61,6 +68,8 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     // =============================================================================================
 
     private fun initUI() {
+        viewModel.screenBrightness = window.attributes.screenBrightness
+
         scanner = QRCode1922Scanner(binding.barcodeView, binding.flashlight, this)
 
         binding.sms.setOnClickListener {
@@ -82,16 +91,41 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     }
 
     // =============================================================================================
-    // Main
+    // Callback
     // =============================================================================================
 
-    override fun onScanned(smsBody: String) {
-        startActivity(QRCode1922Scanner.sms1922Intent(smsBody))
-        if (viewModel.sharedPreferences().vibrateOnScanned) {
-            effectHeavyClickVibrate()
+    override fun onScanSuccess(sms1922Intent: Intent) {
+        try {
+            startActivity(sms1922Intent)
+            if (viewModel.sharedPreferences().vibrateWhenScanned) {
+                effectHeavyClickVibrate()
+            }
+            if (viewModel.sharedPreferences().exitWhenScanned) {
+                onBackPressed()
+            }
+        } catch (e: Exception) {
+            Timber.e(e)
+            alertDialog(getString(R.string.error_start_sms_app))
+                .setOnDismissListener {
+                    scanner.resume()
+                }
         }
-        if (viewModel.sharedPreferences().autoFinishActivity) {
-            onBackPressed()
+    }
+
+    override fun onScanNot1922() {
+        alertDialog(getString(R.string.error_not_1922_qr))
+            .setOnDismissListener {
+                scanner.resume()
+            }
+    }
+
+    // =============================================================================================
+    // Others
+    // =============================================================================================
+
+    private fun highestBrightness(enable: Boolean) {
+        if (viewModel.sharedPreferences().highestBrightness) {
+            brightness(if (enable) 1f else viewModel.screenBrightness)
         }
     }
 }
