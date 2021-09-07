@@ -44,8 +44,9 @@ class QRCode1922Scanner(
                     return@decodeContinuous
                 }
                 pause() // prevent duplicate scans
-                if (result.text.startsWith(SMS_TO_1922)) {
-                    val smsBody = result.text.removePrefix("$SMS_TO_1922:")
+                if (result.text.startsWith(SMS_TO_1922, true)) {
+                    val lowercase = result.text.lowercase()
+                    val smsBody = lowercase.removePrefix("$SMS_TO_1922:")
                     callback.onScanSuccess(sms1922Intent(smsBody))
                 } else {
                     callback.onScanNot1922()
