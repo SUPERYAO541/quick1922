@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.superyao.dev.toolkit.PermissionsRequest
 import com.superyao.dev.toolkit.effectHeavyClickVibrate
 import com.superyao.dev.toolkit.ui.clickTooFast
-import com.superyao.dev.toolkit.ui.messageDialog
 import com.superyao.quick1922.R
 import com.superyao.quick1922.databinding.ActivityMainBinding
 import com.superyao.quick1922.ui.AboutBottomSheetDialogFragment
 import com.superyao.quick1922.ui.SettingsBottomSheetDialogFragment
 import com.superyao.quick1922.utils.QRCode1922Scanner
+import com.superyao.quick1922.utils.alertDialog
 import com.superyao.quick1922.utils.brightness
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -105,22 +105,18 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
             }
         } catch (e: Exception) {
             Timber.e(e)
-            messageDialog(
-                getString(android.R.string.dialog_alert_title),
-                getString(R.string.error_start_sms_app)
-            ).setOnDismissListener {
-                scanner.resume()
-            }
+            alertDialog(getString(R.string.error_start_sms_app))
+                .setOnDismissListener {
+                    scanner.resume()
+                }
         }
     }
 
     override fun onScanNot1922() {
-        messageDialog(
-            getString(android.R.string.dialog_alert_title),
-            getString(R.string.error_not_1922_qr)
-        ).setOnDismissListener {
-            scanner.resume()
-        }
+        alertDialog(getString(R.string.error_not_1922_qr))
+            .setOnDismissListener {
+                scanner.resume()
+            }
     }
 
     // =============================================================================================

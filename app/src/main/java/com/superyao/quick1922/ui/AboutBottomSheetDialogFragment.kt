@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.dev.toolkit.ui.clickTooFast
+import com.superyao.dev.toolkit.ui.messageDialog
 import com.superyao.dev.toolkit.urlIntent
 import com.superyao.quick1922.About
 import com.superyao.quick1922.BuildConfig
@@ -28,8 +29,8 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         superyao.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            if (!openURL(requireContext(), About.FACEBOOK_PAGE)) {
-                openURL(requireContext(), About.FACEBOOK_PAGE2)
+            if (!openURL(requireContext(), About.FACEBOOK_PAGE_DIRECTLY)) {
+                openURL(requireContext(), About.FACEBOOK_PAGE)
             }
         }
 
@@ -40,7 +41,17 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         contact.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            startActivity(contactIntent())
+            try {
+                startActivity(contactIntent())
+            } catch (e: Exception) {
+                Timber.e(e)
+                activity?.run {
+                    messageDialog(
+                        About.SUPERYAO,
+                        "Facebook:\n${About.FACEBOOK_PAGE}\n\nEmail:\n${About.EMAIL}"
+                    )
+                }
+            }
         }
 
         /*

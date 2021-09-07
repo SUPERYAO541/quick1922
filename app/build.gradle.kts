@@ -22,7 +22,7 @@ android {
         applicationId = "com.superyao.quick1922"
         minSdk = 24
         targetSdk = 31
-        versionCode = 4
+        versionCode = 5
         versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
