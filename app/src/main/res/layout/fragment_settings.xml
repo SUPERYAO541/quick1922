@@ -41,25 +41,36 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/vibrate_on_scanned"
+                    android:id="@+id/vibrate_when_scanned"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="16dp"
                     android:padding="16dp"
-                    android:text="@string/vibrate_on_scanned"
+                    android:text="@string/settings_vibrate_when_scanned"
                     android:textSize="@dimen/font_l"
                     app:drawableStartCompat="@drawable/ic_round_vibration_24"
                     app:drawableTint="@android:color/black" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/auto_finish_activity"
+                    android:id="@+id/exit_when_scanned"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/auto_finish_activity"
+                    android:text="@string/settings_exit_when_scanned"
                     android:textSize="@dimen/font_l"
                     android:drawablePadding="16dp"
                     app:drawableStartCompat="@drawable/ic_round_close_24"
+                    app:drawableTint="@android:color/black" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/highest_brightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="@string/settings_highest_brightness"
+                    android:textSize="@dimen/font_l"
+                    android:drawablePadding="16dp"
+                    app:drawableStartCompat="@drawable/ic_round_brightness_high_24"
                     app:drawableTint="@android:color/black" />
 
             </LinearLayout>

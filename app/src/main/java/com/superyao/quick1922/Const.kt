@@ -2,9 +2,10 @@ package com.superyao.quick1922
 
 object About {
     // superyao
+    const val SUPERYAO = "SUPERYAO"
     const val EMAIL = "supersy943@gmail.com"
-    const val FACEBOOK_PAGE = "fb://page/517927788372255"
-    const val FACEBOOK_PAGE2 = "https://www.facebook.com/SUPERYAO541"
+    const val FACEBOOK_PAGE = "https://www.facebook.com/SUPERYAO541"
+    const val FACEBOOK_PAGE_DIRECTLY = "fb://page/517927788372255"
     const val GOOGLE_PLAY_PAGE = "https://play.google.com/store/apps/dev?id=5829727399068828820"
 
     // terms

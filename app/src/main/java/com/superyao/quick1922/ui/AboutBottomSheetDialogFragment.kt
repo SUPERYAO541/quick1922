@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.dev.toolkit.ui.clickTooFast
+import com.superyao.dev.toolkit.ui.messageDialog
 import com.superyao.dev.toolkit.urlIntent
 import com.superyao.quick1922.About
 import com.superyao.quick1922.BuildConfig
@@ -27,20 +28,29 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
         version.text = BuildConfig.VERSION_NAME
 
         superyao.setOnClickListener {
-            if (!openURL(requireContext(), About.FACEBOOK_PAGE)) {
-                openURL(requireContext(), About.FACEBOOK_PAGE2)
+            if (clickTooFast()) return@setOnClickListener
+            if (!openURL(requireContext(), About.FACEBOOK_PAGE_DIRECTLY)) {
+                openURL(requireContext(), About.FACEBOOK_PAGE)
             }
         }
 
         googlePlay.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.GOOGLE_PLAY_PAGE)
         }
 
         contact.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            val intent = contactIntent()
-            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                startActivity(intent)
+            try {
+                startActivity(contactIntent())
+            } catch (e: Exception) {
+                Timber.e(e)
+                activity?.run {
+                    messageDialog(
+                        About.SUPERYAO,
+                        "Facebook:\n${About.FACEBOOK_PAGE}\n\nEmail:\n${About.EMAIL}"
+                    )
+                }
             }
         }
 
@@ -49,14 +59,17 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         terms.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.TERMS_AND_CONDITIONS)
         }
 
         privacyPolicy.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.PRIVACY_POLICY)
         }
 
         disclaimer.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.DISCLAIMER)
         }
 
@@ -65,6 +78,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         zxingAndroidEmbedded.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.ZXING_ANDROID_EMBEDDED)
         }
 
@@ -73,6 +87,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
          */
 
         flaticon.setOnClickListener {
+            if (clickTooFast()) return@setOnClickListener
             openURL(requireContext(), About.FREEPIK)
         }
 

@@ -2,17 +2,18 @@
 <resources>
     <string name="about">關於</string>
 
-    <string name="app_introduce">你好，我是開發者 SUPERYAO，這是一個可以幫助你快速完成 1922 簡訊實聯制的小程式，完全免費、無廣告。本應用程式無網路權限，因此不會上傳任何個人資訊。如有任何問題或建議，都歡迎與我聯繫。&#128512;</string>
+    <string name="app_introduce">你好，我是開發者 SUPERYAO，這是一個可以幫助你快速完成 1922 簡訊實聯制的應用程式。完全免費、無廣告，亦無網路權限，因此不會也不能上傳任何敏感資訊。如有其它疑問或建議，都歡迎與我聯繫。&#128512;</string>
     <string name="app_name">快速實聯</string>
-
-    <string name="auto_finish_activity">掃描成功後關閉程式</string>
 
     <string name="disclaimer">免責聲明</string>
 
+    <string name="error_not_1922_qr">此條碼並非 1922 簡訊實聯制之 QR Code。</string>
+    <string name="error_start_sms_app">啟動簡訊 App 時發生錯誤。</string>
+
     <string name="feedback">意見回饋</string>
 
-    <string name="hint_message">請將實聯制 QR Code 對準下方掃描框。</string>
-    <string name="hint_title">簡訊實聯制 1922</string>
+    <string name="home_message">請將實聯制 QR Code 對準下方掃描框。</string>
+    <string name="home_title">簡訊實聯制 1922</string>
 
     <string name="icons">圖示</string>
 
@@ -23,13 +24,12 @@
     <string name="privacy_policy">隱私政策</string>
 
     <string name="settings">設定</string>
+    <string name="settings_exit_when_scanned">掃描成功後關閉程式</string>
+    <string name="settings_highest_brightness">最高亮度</string>
+    <string name="settings_vibrate_when_scanned">掃描成功後震動</string>
 
     <string name="sms_1922">1922 簡訊紀錄</string>
 
-    <string name="something_went_wrong">發生了一些異常。</string>
-
     <string name="terms">條款</string>
     <string name="terms_and_conditions">條款與條件</string>
-
-    <string name="vibrate_on_scanned">掃描成功後震動</string>
 </resources>
