@@ -22,8 +22,8 @@ android {
         applicationId = "com.superyao.quick1922"
         minSdk = 24
         targetSdk = 31
-        versionCode = 5
-        versionName = "1.0.3"
+        versionCode = 6
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Quick1922-$versionName-$versionCode")
