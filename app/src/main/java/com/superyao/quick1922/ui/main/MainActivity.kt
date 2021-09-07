@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     }
 
     override fun onBackPressed() {
-        finishAndRemoveTask()
+        finishAfterTransition()
     }
 
     // =============================================================================================
