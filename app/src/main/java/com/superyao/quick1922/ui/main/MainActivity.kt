@@ -106,17 +106,13 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
         } catch (e: Exception) {
             Timber.e(e)
             alertDialog(getString(R.string.error_start_sms_app))
-                .setOnDismissListener {
-                    scanner.resume()
-                }
+                .setOnDismissListener { scanner.resume() }
         }
     }
 
     override fun onScanNot1922() {
         alertDialog(getString(R.string.error_not_1922_qr))
-            .setOnDismissListener {
-                scanner.resume()
-            }
+            .setOnDismissListener { scanner.resume() }
     }
 
     // =============================================================================================
