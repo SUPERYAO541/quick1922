@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.quick1922.databinding.FragmentSettingsBinding
+import com.superyao.quick1922.ui.base.BaseBottomSheetDialogFragment
 import com.superyao.quick1922.ui.main.MainViewModel
 import com.superyao.quick1922.utils.brightness
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class SettingsBottomSheetDialogFragment : BaseBottomSheetDialogFragment() {
 
     private val viewModel by activityViewModels<MainViewModel>()
 

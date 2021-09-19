@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.superyao.dev.toolkit.ui.clickTooFast
 import com.superyao.dev.toolkit.ui.messageDialog
 import com.superyao.dev.toolkit.urlIntent
@@ -15,9 +14,10 @@ import com.superyao.quick1922.About
 import com.superyao.quick1922.BuildConfig
 import com.superyao.quick1922.R
 import com.superyao.quick1922.databinding.FragmentAboutBinding
+import com.superyao.quick1922.ui.base.BaseBottomSheetDialogFragment
 import timber.log.Timber
 
-class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class AboutBottomSheetDialogFragment : BaseBottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +46,9 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
             } catch (e: Exception) {
                 Timber.e(e)
                 activity?.run {
-                    messageDialog(
-                        About.SUPERYAO,
-                        "Facebook:\n${About.FACEBOOK_PAGE}\n\nEmail:\n${About.EMAIL}"
-                    )
+                    val message =
+                        "Facebook:\n${About.FACEBOOK_PAGE}\n\nEmail:\n${getString(R.string.mail)}"
+                    messageDialog(About.SUPERYAO, message)
                 }
             }
         }
@@ -113,7 +112,7 @@ class AboutBottomSheetDialogFragment : BottomSheetDialogFragment() {
         Timber.d(deviceInfo)
         val contactIntent = Intent(Intent.ACTION_SEND).apply {
             selector = Intent(Intent.ACTION_SENDTO).apply { data = "mailto:".toUri() }
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(About.EMAIL))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.mail)))
             val subject = "[${getString(R.string.app_name)}] ${getString(R.string.feedback)}"
             putExtra(Intent.EXTRA_SUBJECT, subject)
             putExtra(Intent.EXTRA_TEXT, "$deviceInfo$additional\n\n")

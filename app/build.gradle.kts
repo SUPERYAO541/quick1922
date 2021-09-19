@@ -22,8 +22,8 @@ android {
         applicationId = "com.superyao.quick1922"
         minSdk = 24
         targetSdk = 31
-        versionCode = 6
-        versionName = "1.1.0"
+        versionCode = 7
+        versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Quick1922-$versionName-$versionCode")
@@ -81,7 +81,7 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar", "*.aar")))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.30")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
 
     val coroutinesVersion = "1.5.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
@@ -93,7 +93,7 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
 
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
 
     // lifecycle
 
@@ -104,7 +104,7 @@ dependencies {
 
     // Hilt
 
-    val hiltVersion = "2.38.1"
+    val hiltVersion = "2.39"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
 
@@ -124,7 +124,7 @@ dependencies {
 
     // Others
 
-    implementation("com.github.SUPERYAO541:android-toolkit:0.2.1")
+    implementation("com.github.SUPERYAO541:android-toolkit:0.3.0")
 
     /*
     Third party

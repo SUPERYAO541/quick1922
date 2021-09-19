@@ -79,14 +79,20 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
 
         binding.about.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            val fragment = AboutBottomSheetDialogFragment.newInstance()
-            fragment.show(supportFragmentManager, fragment.tag)
+            scanner.pause()
+            AboutBottomSheetDialogFragment.newInstance().apply {
+                onDismiss = { scanner.resume() }
+                show(supportFragmentManager, tag)
+            }
         }
 
         binding.settings.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
-            val fragment = SettingsBottomSheetDialogFragment.newInstance()
-            fragment.show(supportFragmentManager, fragment.tag)
+            scanner.pause()
+            SettingsBottomSheetDialogFragment.newInstance().apply {
+                onDismiss = { scanner.resume() }
+                show(supportFragmentManager, tag)
+            }
         }
     }
 
