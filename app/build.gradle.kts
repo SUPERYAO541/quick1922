@@ -22,7 +22,7 @@ android {
         applicationId = "com.superyao.quick1922"
         minSdk = 24
         targetSdk = 31
-        versionCode = 7
+        versionCode = 8
         versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -104,7 +104,7 @@ dependencies {
 
     // Hilt
 
-    val hiltVersion = "2.39"
+    val hiltVersion = "2.39.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
 
@@ -124,7 +124,7 @@ dependencies {
 
     // Others
 
-    implementation("com.github.SUPERYAO541:android-toolkit:0.3.0")
+    implementation("com.github.SUPERYAO541:android-toolkit:0.3.1")
 
     /*
     Third party
