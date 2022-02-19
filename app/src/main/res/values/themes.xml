@@ -24,7 +24,7 @@
         <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
-    <style name="OneLineTextView" parent="Widget.AppCompat.TextView">
+    <style name="OneLineTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
