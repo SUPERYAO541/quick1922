@@ -16,7 +16,7 @@ class SharedPreferencesBase(context: Context) {
         }
 
     var exitWhenScanned: Boolean
-        get() = setting.getValue(EXIT_WHEN_SCANNED, true)
+        get() = setting.getValue(EXIT_WHEN_SCANNED, false)
         set(value) {
             setting.commitValue(EXIT_WHEN_SCANNED, value)
         }
