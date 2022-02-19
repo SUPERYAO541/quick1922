@@ -103,10 +103,10 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     override fun onScanSuccess(sms1922Intent: Intent) {
         try {
             startActivity(sms1922Intent)
-            if (viewModel.sharedPreferences().vibrateWhenScanned) {
+            if (viewModel.getSharedPreferences().vibrateWhenScanned) {
                 effectHeavyClickVibrate()
             }
-            if (viewModel.sharedPreferences().exitWhenScanned) {
+            if (viewModel.getSharedPreferences().exitWhenScanned) {
                 onBackPressed()
             }
         } catch (e: Exception) {
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     // =============================================================================================
 
     private fun highestBrightness(enable: Boolean) {
-        if (viewModel.sharedPreferences().highestBrightness) {
+        if (viewModel.getSharedPreferences().highestBrightness) {
             brightness(if (enable) 1f else viewModel.screenBrightness)
         }
     }

@@ -12,7 +12,7 @@ abstract class BaseViewModel(private val repository: DataRepository) : ViewModel
         super.onCleared()
     }
 
-    fun sharedPreferences(): SharedPreferencesBase {
+    fun getSharedPreferences(): SharedPreferencesBase {
         return repository.localData.sharedPreferences
     }
 }

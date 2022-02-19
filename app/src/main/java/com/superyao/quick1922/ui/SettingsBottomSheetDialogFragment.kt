@@ -21,7 +21,7 @@ class SettingsBottomSheetDialogFragment : BaseBottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ) = FragmentSettingsBinding.inflate(inflater, container, false).apply {
 
-        val sharedPreferences = viewModel.sharedPreferences()
+        val sharedPreferences = viewModel.getSharedPreferences()
 
         vibrateWhenScanned.isChecked = sharedPreferences.vibrateWhenScanned
         vibrateWhenScanned.setOnCheckedChangeListener { _, checked ->

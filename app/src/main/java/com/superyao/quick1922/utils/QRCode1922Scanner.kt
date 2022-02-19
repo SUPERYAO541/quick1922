@@ -94,14 +94,16 @@ class QRCode1922Scanner(
     }
 
     companion object {
-        const val SMS_TO_1922 = "smsto:1922"
+        const val SMS_TO = "smsto:"
+        const val SMS_TO_1922 = "${SMS_TO}1922"
+        const val SMS_BODY = "sms_body"
 
         fun sms1922Intent(smsBody: String = ""): Intent {
             return Intent(Intent.ACTION_SENDTO).apply {
                 type = "text/plain"
                 data = SMS_TO_1922.toUri()
                 if (smsBody.isNotEmpty()) {
-                    putExtra("sms_body", smsBody)
+                    putExtra(SMS_BODY, smsBody)
                 }
             }
         }
