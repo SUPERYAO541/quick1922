@@ -74,26 +74,29 @@ android {
     }
 
     lint {
-        disable("ContentDescription", "SpUsage")
+        disable.apply {
+            add("ContentDescription")
+            add("SpUsage")
+        }
     }
 }
 
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar", "*.aar")))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
 
     val coroutinesVersion = "1.5.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
 
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
 
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
     // lifecycle
 
@@ -115,7 +118,7 @@ dependencies {
     // test
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk:1.12.1")
 
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
