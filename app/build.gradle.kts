@@ -107,7 +107,7 @@ dependencies {
 
     // Hilt
 
-    val hiltVersion = "2.39.1"
+    val hiltVersion = "2.40.5"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
 
