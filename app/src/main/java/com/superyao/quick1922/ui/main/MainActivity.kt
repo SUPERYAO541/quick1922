@@ -70,14 +70,14 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
     private fun initUI() {
         viewModel.screenBrightness = window.attributes.screenBrightness
 
-        scanner = QRCode1922Scanner(binding.barcodeView, binding.flashlight, this)
+        scanner = QRCode1922Scanner(binding.barcodeView, binding.flashlightButton, this)
 
-        binding.sms.setOnClickListener {
+        binding.smsButton.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
             startActivity(QRCode1922Scanner.sms1922Intent())
         }
 
-        binding.about.setOnClickListener {
+        binding.aboutButton.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
             scanner.pause()
             AboutBottomSheetDialogFragment.newInstance().apply {
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), QRCode1922Scanner.Callback {
             }
         }
 
-        binding.settings.setOnClickListener {
+        binding.settingButton.setOnClickListener {
             if (clickTooFast()) return@setOnClickListener
             scanner.pause()
             SettingsBottomSheetDialogFragment.newInstance().apply {

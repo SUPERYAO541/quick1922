@@ -24,7 +24,6 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="8dp">
@@ -36,10 +35,10 @@
                     android:text="@string/app_name"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_xl"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/version"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/version"
@@ -48,10 +47,10 @@
                     android:layout_margin="4dp"
                     android:textSize="@dimen/font_l"
                     android:textColor="@android:color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/superyao"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/app_name"
+                    app:layout_constraintBottom_toTopOf="@+id/superyao"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="1.0.0" />
 
                 <ImageView
@@ -60,11 +59,11 @@
                     android:layout_height="64dp"
                     android:layout_margin="12dp"
                     android:background="?selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toBottomOf="@+id/version"
                     app:layout_constraintBottom_toTopOf="@+id/introduce"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/google_play"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/version"
                     app:srcCompat="@drawable/icon_superyao" />
 
                 <ImageView
@@ -73,10 +72,10 @@
                     android:layout_height="64dp"
                     android:layout_margin="12dp"
                     android:background="?selectableItemBackgroundBorderless"
-                    app:layout_constraintBottom_toBottomOf="@+id/superyao"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/superyao"
                     app:layout_constraintTop_toTopOf="@+id/superyao"
+                    app:layout_constraintBottom_toBottomOf="@+id/superyao"
+                    app:layout_constraintStart_toEndOf="@id/superyao"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/icon_google_play" />
 
                 <TextView
@@ -97,21 +96,21 @@
                     style="@style/CommonMaterialButton"
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
-                    app:layout_constrainedWidth="true"
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/mail"
                     android:textAllCaps="false"
-                    app:cornerRadius="32dp"
-                    app:elevation="8dp"
-                    app:icon="@drawable/ic_round_email_24"
-                    app:iconSize="32dp"
-                    app:iconGravity="textStart"
                     app:layout_constraintTop_toBottomOf="@+id/introduce"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constrainedWidth="true"
+                    app:icon="@drawable/ic_round_email_24"
+                    app:iconSize="32dp"
+                    app:iconGravity="textStart"
+                    app:cornerRadius="32dp"
+                    app:elevation="8dp"
                     tools:ignore="SpeakableTextPresentCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -141,33 +140,33 @@
                     style="@style/OneLineTextView"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:background="?selectableItemBackground"
                     android:gravity="center_vertical"
                     android:text="@string/terms_and_conditions"
                     android:textSize="@dimen/font_l"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="?selectableItemBackground" />
 
                 <TextView
                     android:id="@+id/privacyPolicy"
                     style="@style/OneLineTextView"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:background="?selectableItemBackground"
                     android:gravity="center_vertical"
                     android:text="@string/privacy_policy"
                     android:textSize="@dimen/font_l"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="?selectableItemBackground" />
 
                 <TextView
                     android:id="@+id/disclaimer"
                     style="@style/OneLineTextView"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:background="?selectableItemBackground"
                     android:gravity="center_vertical"
                     android:text="@string/disclaimer"
                     android:textSize="@dimen/font_l"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="?selectableItemBackground" />
 
             </LinearLayout>
 
@@ -196,11 +195,11 @@
                     style="@style/OneLineTextView"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:background="?selectableItemBackground"
                     android:gravity="center_vertical"
                     android:text="ZXing Android Embedded"
                     android:textSize="@dimen/font_l"
                     android:textColor="@android:color/black"
+                    android:background="?selectableItemBackground"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -230,11 +229,11 @@
                     style="@style/OneLineTextView"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:background="?selectableItemBackground"
                     android:gravity="center_vertical"
                     android:text="Freepik"
                     android:textSize="@dimen/font_l"
                     android:textColor="@android:color/black"
+                    android:background="?selectableItemBackground"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
